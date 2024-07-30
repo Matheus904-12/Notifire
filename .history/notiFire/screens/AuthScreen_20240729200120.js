@@ -8,6 +8,14 @@ export default function AuthScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
+  const cadastrar = () => {
+    createUserWithEmailAndPassword(auth, email, senha)
+      .then(userCredential => {
+        navigation.navigate('SendMessage');
+      })
+      .catch(error => alert(error.message));
+  };
+
   const entrar = () => {
     signInWithEmailAndPassword(auth, email, senha)
       .then(userCredential => {
@@ -42,7 +50,7 @@ export default function AuthScreen({ navigation }) {
         <TouchableOpacity style={styles.button} onPress={entrar}>
           <Text style={styles.buttonText}>Começar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Cadastro')}>
+        <TouchableOpacity style={styles.registerButton} onPress={cadastrar}>
           <Text style={styles.registerButtonText}>Não sou cadastrado :(</Text>
         </TouchableOpacity>
       </View>
@@ -77,34 +85,33 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
+    marginBottom: 30,
     color: '#fff',
-    marginBottom: 20,
   },
   input: {
     width: '80%',
     padding: 10,
     marginBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: '#fff',
     color: '#fff',
   },
   button: {
     backgroundColor: '#fff',
-    padding: 10,
-    marginVertical: 5,
+    padding: 15,
+    borderRadius: 15,
     width: '80%',
     alignItems: 'center',
-    borderRadius: 5,
+    marginTop: 20,
   },
   buttonText: {
     color: '#000',
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
-  registerButton: {
-    marginTop: 10,
-  },
-  registerButtonText: {
+  registerText: {
     color: '#fff',
-    fontSize: 16,
+    marginTop: 20,
+    fontSize: 14,
   },
 });

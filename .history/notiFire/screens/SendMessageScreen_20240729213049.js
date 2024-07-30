@@ -10,11 +10,6 @@ export default function SendMessageScreen({ navigation }) {
   const user = auth.currentUser;
 
   useEffect(() => {
-    if (!user) {
-      navigation.navigate('Login'); // Redirecionar para a tela de login se o usuário não estiver autenticado
-      return;
-    }
-
     const mensagensQuery = query(collection(firestore, 'mensagens'), orderBy('timestamp', 'asc'));
     const unsubscribe = onSnapshot(mensagensQuery, (snapshot) => {
       const mensagensList = snapshot.docs.map(doc => ({
@@ -25,14 +20,9 @@ export default function SendMessageScreen({ navigation }) {
     });
 
     return () => unsubscribe();
-  }, [user]);
+  }, []);
 
   const enviarMensagem = async () => {
-    if (!user) {
-      alert('Você precisa estar autenticado para enviar mensagens.');
-      return;
-    }
-
     try {
       await addDoc(collection(firestore, 'mensagens'), {
         texto: mensagem,
@@ -154,7 +144,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: '#333',
-    borderRadius: 15,
+    borderRadius: 25,
     marginRight: 10,
     color: '#fff',
   },

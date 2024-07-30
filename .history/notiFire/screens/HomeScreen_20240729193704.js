@@ -34,21 +34,20 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontSize: 22,
+    fontSize: 18,
     color: '#fff',
     marginBottom: 20,
-    fontWeight: 'semi-bold',
-    top: -20,
+    
   },
   button: {
     backgroundColor: '#fff',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 15,
+    borderRadius: 5,
   },
   buttonText: {
     color: '#000',
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { auth } from '../firebaseConfig';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function AuthScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -20,7 +20,7 @@ export default function AuthScreen({ navigation }) {
     <LinearGradient colors={['#7f7f7f', '#191919', '#000000']} style={styles.background}>
       <View style={styles.container}>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Image source={require('../assets/back.png')} style={styles.backButtonImage} />
+          <Image source={require('../assets/images/back.png')} style={styles.backButtonImage} />
         </TouchableOpacity>
         <Text style={styles.title}>Entrar</Text>
         <Text style={styles.subtitle}>Faça o login para começar</Text>
@@ -42,8 +42,8 @@ export default function AuthScreen({ navigation }) {
         <TouchableOpacity style={styles.button} onPress={entrar}>
           <Text style={styles.buttonText}>Começar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Cadastro')}>
-          <Text style={styles.registerButtonText}>Não sou cadastrado :(</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
+          <Text style={styles.registerText}>Não sou cadastrado :(</Text>
         </TouchableOpacity>
       </View>
     </LinearGradient>
@@ -62,12 +62,12 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 60,
-    left: 30,
+    top: 40,
+    left: 20,
   },
   backButtonImage: {
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
   },
   title: {
     fontSize: 32,
@@ -77,34 +77,33 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
+    marginBottom: 30,
     color: '#fff',
-    marginBottom: 20,
   },
   input: {
     width: '80%',
     padding: 10,
     marginBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: '#fff',
     color: '#fff',
   },
   button: {
     backgroundColor: '#fff',
-    padding: 10,
-    marginVertical: 5,
+    padding: 15,
+    borderRadius: 25,
     width: '80%',
     alignItems: 'center',
-    borderRadius: 5,
+    marginTop: 20,
   },
   buttonText: {
     color: '#000',
     fontSize: 16,
+    fontWeight: 'bold',
   },
-  registerButton: {
-    marginTop: 10,
-  },
-  registerButtonText: {
+  registerText: {
     color: '#fff',
-    fontSize: 16,
+    marginTop: 20,
+    fontSize: 14,
   },
 });

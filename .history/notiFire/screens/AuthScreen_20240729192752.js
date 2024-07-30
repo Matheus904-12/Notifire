@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { auth } from '../firebaseConfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -17,10 +16,10 @@ export default function AuthScreen({ navigation }) {
   };
 
   return (
-    <LinearGradient colors={['#7f7f7f', '#191919', '#000000']} style={styles.background}>
+    <ImageBackground style={styles.background}>
       <View style={styles.container}>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Image source={require('../assets/back.png')} style={styles.backButtonImage} />
+          <Text style={styles.backButtonText}>&larr;</Text>
         </TouchableOpacity>
         <Text style={styles.title}>Entrar</Text>
         <Text style={styles.subtitle}>Faça o login para começar</Text>
@@ -29,7 +28,6 @@ export default function AuthScreen({ navigation }) {
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
-          placeholderTextColor="#fff"
         />
         <TextInput
           style={styles.input}
@@ -37,22 +35,22 @@ export default function AuthScreen({ navigation }) {
           value={senha}
           onChangeText={setSenha}
           secureTextEntry
-          placeholderTextColor="#fff"
         />
         <TouchableOpacity style={styles.button} onPress={entrar}>
           <Text style={styles.buttonText}>Começar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Cadastro')}>
-          <Text style={styles.registerButtonText}>Não sou cadastrado :(</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
+          <Text style={styles.registerText}>Não sou cadastrado :(</Text>
         </TouchableOpacity>
       </View>
-    </LinearGradient>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
+    backgroundColor: 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 100%)',
   },
   container: {
     flex: 1,
@@ -62,12 +60,12 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 60,
-    left: 30,
+    top: 40,
+    left: 20,
   },
-  backButtonImage: {
-    width: 40,
-    height: 40,
+  backButtonText: {
+    fontSize: 30,
+    color: '#000',
   },
   title: {
     fontSize: 32,
@@ -77,34 +75,34 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
+    marginBottom: 30,
     color: '#fff',
-    marginBottom: 20,
   },
   input: {
     width: '80%',
     padding: 10,
     marginBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: '#fff',
     color: '#fff',
   },
   button: {
     backgroundColor: '#fff',
-    padding: 10,
-    marginVertical: 5,
+    padding: 15,
+    borderRadius: 25,
     width: '80%',
     alignItems: 'center',
-    borderRadius: 5,
+    marginTop: 20,
   },
   buttonText: {
     color: '#000',
     fontSize: 16,
+    fontWeight: 'bold',
   },
-  registerButton: {
-    marginTop: 10,
-  },
-  registerButtonText: {
+  registerText: {
     color: '#fff',
-    fontSize: 16,
+    marginTop: 20,
+    fontSize: 14,
   },
 });
+

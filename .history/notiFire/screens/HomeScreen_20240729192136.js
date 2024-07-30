@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function HomeScreen({ navigation }) {
   return (
     <LinearGradient
-      colors={['#7f7f7f', '#191919', '#000000']} // Substitua pelas cores do seu gradiente
+      colors={['#7f7f7f', '#000000', '#000000']} // Substitua pelas cores do seu gradiente
       style={styles.background}
     >
       <View style={styles.container}>
@@ -29,26 +29,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 400,
-    height: 200,
+    width: 100,
+    height: 100,
     marginBottom: 20,
   },
   title: {
-    fontSize: 22,
+    fontSize: 18,
     color: '#fff',
     marginBottom: 20,
-    fontWeight: 'semi-bold',
-    top: -20,
   },
   button: {
     backgroundColor: '#fff',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 15,
+    borderRadius: 5,
   },
   buttonText: {
     color: '#000',
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 16,
   },
 });

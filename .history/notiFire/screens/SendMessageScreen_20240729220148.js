@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, FlatList, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { auth, firestore } from '../firebaseConfig';
-import { collection, addDoc, Timestamp, query, onSnapshot, orderBy } from 'firebase/firestore';
+import { collection, addDoc, Timestamp, query, onSnapshot, orderBy, where } from 'firebase/firestore';
 
 export default function SendMessageScreen({ navigation }) {
   const [mensagem, setMensagem] = useState('');
@@ -11,11 +11,15 @@ export default function SendMessageScreen({ navigation }) {
 
   useEffect(() => {
     if (!user) {
-      navigation.navigate('Login'); // Redirecionar para a tela de login se o usuário não estiver autenticado
+      navigation.navigate('Auth'); // Redirecionar para a tela de login se o usuário não estiver autenticado
       return;
     }
 
-    const mensagensQuery = query(collection(firestore, 'mensagens'), orderBy('timestamp', 'asc'));
+    const mensagensQuery = query(
+      collection(firestore, 'mensagens'),
+      where('usuario', '==', user.email),
+      orderBy('timestamp', 'asc')
+    );
     const unsubscribe = onSnapshot(mensagensQuery, (snapshot) => {
       const mensagensList = snapshot.docs.map(doc => ({
         id: doc.id,
@@ -60,7 +64,7 @@ export default function SendMessageScreen({ navigation }) {
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
           <Image source={require('../assets/back.png')} style={styles.buttonImage} />
         </TouchableOpacity>
-        <Text style={styles.title}>Luiz Henrique</Text>
+        <Text style={styles.title}>{user ? user.email : 'Carregando...'}</Text>
         <FlatList
           data={mensagens}
           renderItem={renderItem}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { auth } from '../firebaseConfig';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function AuthScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -42,8 +42,8 @@ export default function AuthScreen({ navigation }) {
         <TouchableOpacity style={styles.button} onPress={entrar}>
           <Text style={styles.buttonText}>Começar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Cadastro')}>
-          <Text style={styles.registerButtonText}>Não sou cadastrado :(</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
+          <Text style={styles.registerText}>Não sou cadastrado :(</Text>
         </TouchableOpacity>
       </View>
     </LinearGradient>
@@ -77,34 +77,33 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
+    marginBottom: 30,
     color: '#fff',
-    marginBottom: 20,
   },
   input: {
     width: '80%',
     padding: 10,
     marginBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: '#fff',
     color: '#fff',
   },
   button: {
     backgroundColor: '#fff',
-    padding: 10,
-    marginVertical: 5,
+    padding: 15,
+    borderRadius: 15,
     width: '80%',
     alignItems: 'center',
-    borderRadius: 5,
+    marginTop: 20,
   },
   buttonText: {
     color: '#000',
-    fontSize: 16,
+    fontSize: 20,
+    fontWeight: 'bold',
   },
-  registerButton: {
-    marginTop: 10,
-  },
-  registerButtonText: {
+  registerText: {
     color: '#fff',
-    fontSize: 16,
+    marginTop: 20,
+    fontSize: 14,
   },
 });

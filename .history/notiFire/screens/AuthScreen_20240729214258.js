@@ -8,6 +8,14 @@ export default function AuthScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
+  const cadastrar = () => {
+    createUserWithEmailAndPassword(auth, email, senha)
+      .then(userCredential => {
+        navigation.navigate('SendMessage');
+      })
+      .catch(error => alert(error.message));
+  };
+
   const entrar = () => {
     signInWithEmailAndPassword(auth, email, senha)
       .then(userCredential => {
@@ -42,7 +50,7 @@ export default function AuthScreen({ navigation }) {
         <TouchableOpacity style={styles.button} onPress={entrar}>
           <Text style={styles.buttonText}>Começar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Cadastro')}>
+        <TouchableOpacity style={styles.registerButton} onPress={cadastrar}>
           <Text style={styles.registerButtonText}>Não sou cadastrado :(</Text>
         </TouchableOpacity>
       </View>

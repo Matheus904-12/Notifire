@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { auth } from '../firebaseConfig';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-export default function AuthScreen({ navigation }) {
+export default function CadastroScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const entrar = () => {
-    signInWithEmailAndPassword(auth, email, senha)
+  const cadastrar = () => {
+    createUserWithEmailAndPassword(auth, email, senha)
       .then(userCredential => {
         navigation.navigate('SendMessage');
       })
@@ -22,8 +22,8 @@ export default function AuthScreen({ navigation }) {
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
           <Image source={require('../assets/back.png')} style={styles.backButtonImage} />
         </TouchableOpacity>
-        <Text style={styles.title}>Entrar</Text>
-        <Text style={styles.subtitle}>Faça o login para começar</Text>
+        <Text style={styles.title}>Cadastrar</Text>
+        <Text style={styles.subtitle}>Crie sua conta para começar</Text>
         <TextInput
           style={styles.input}
           placeholder="Email"
@@ -39,11 +39,8 @@ export default function AuthScreen({ navigation }) {
           secureTextEntry
           placeholderTextColor="#fff"
         />
-        <TouchableOpacity style={styles.button} onPress={entrar}>
-          <Text style={styles.buttonText}>Começar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Cadastro')}>
-          <Text style={styles.registerButtonText}>Não sou cadastrado :(</Text>
+        <TouchableOpacity style={styles.button} onPress={cadastrar}>
+          <Text style={styles.buttonText}>Cadastrar</Text>
         </TouchableOpacity>
       </View>
     </LinearGradient>
@@ -77,34 +74,28 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
+    marginBottom: 30,
     color: '#fff',
-    marginBottom: 20,
   },
   input: {
     width: '80%',
     padding: 10,
     marginBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: '#fff',
     color: '#fff',
   },
   button: {
     backgroundColor: '#fff',
-    padding: 10,
-    marginVertical: 5,
+    padding: 15,
+    borderRadius: 25,
     width: '80%',
     alignItems: 'center',
-    borderRadius: 5,
+    marginTop: 20,
   },
   buttonText: {
     color: '#000',
-    fontSize: 16,
-  },
-  registerButton: {
-    marginTop: 10,
-  },
-  registerButtonText: {
-    color: '#fff',
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
