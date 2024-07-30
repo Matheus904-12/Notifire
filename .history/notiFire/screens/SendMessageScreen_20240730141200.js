@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    justifyContent: 'flex-end', // Adjust to 'flex-end' to push input container to the bottom
+    justifyContent: 'center',
   },
   backButton: {
     position: 'absolute',
@@ -75,10 +75,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
     textAlign: 'center',
+    marginTop: -735,
     position: 'absolute',
-    top: 60, // Adjust this value as needed to position the title at the top
-    left: 0,
-    right: 0,
   },
   inputContainer: {
     flexDirection: 'row',

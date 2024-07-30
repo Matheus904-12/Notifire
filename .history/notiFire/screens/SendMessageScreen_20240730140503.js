@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    justifyContent: 'flex-end', // Adjust to 'flex-end' to push input container to the bottom
+    justifyContent: 'center',
   },
   backButton: {
     position: 'absolute',
@@ -75,10 +75,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
     textAlign: 'center',
-    position: 'absolute',
-    top: 60, // Adjust this value as needed to position the title at the top
-    left: 0,
-    right: 0,
+    marginTop: -220,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -93,7 +90,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderWidth: 1,
     borderColor: '#fff',
-    borderRadius: 15,
+    borderRadius: 30,
     color: '#fff',
     marginRight: 10,
     backgroundColor: '#333',
@@ -101,13 +98,13 @@ const styles = StyleSheet.create({
   buttonEnviar: {
     backgroundColor: '#fff',
     padding: 15,
-    borderRadius: 15,
+    borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },
   buttonSendImage: {
-    width: 30,
-    height: 30,
+    width: 20,
+    height: 20,
     tintColor: '#000',
   },
 });

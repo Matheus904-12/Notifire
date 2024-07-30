@@ -34,11 +34,13 @@ export default function SendMessageScreen({ navigation }) {
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
           <Image source={require('../assets/back.png')} style={styles.backButtonImage} />
         </TouchableOpacity>
-        <Text style={styles.title}>{user.email}</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{user.email}</Text>
+        </View>
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="Digite aqui"
+            placeholder="Digite sua mensagem"
             value={mensagem}
             onChangeText={setMensagem}
             placeholderTextColor="#fff"
@@ -59,7 +61,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    justifyContent: 'flex-end', // Adjust to 'flex-end' to push input container to the bottom
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   backButton: {
     position: 'absolute',
@@ -70,44 +73,35 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
   },
+  titleContainer: {
+    marginBottom: 20,
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
     textAlign: 'center',
-    position: 'absolute',
-    top: 60, // Adjust this value as needed to position the title at the top
-    left: 0,
-    right: 0,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    position: 'absolute',
-    bottom: 20,
-    left: 20,
-    right: 20,
+    width: '100%',
+    marginBottom: 20,
   },
   input: {
     flex: 1,
     padding: 15,
-    borderWidth: 1,
-    borderColor: '#fff',
-    borderRadius: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
     color: '#fff',
-    marginRight: 10,
-    backgroundColor: '#333',
+    fontSize: 16,
   },
   buttonEnviar: {
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginLeft: 10,
   },
   buttonSendImage: {
     width: 30,
     height: 30,
-    tintColor: '#000',
+    tintColor: '#fff',
   },
 });

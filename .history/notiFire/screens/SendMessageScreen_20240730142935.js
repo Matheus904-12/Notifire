@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     position: 'absolute',
-    top: 60, // Adjust this value as needed to position the title at the top
+    top: 80, // Adjust this value as needed to position the title at the top
     left: 0,
     right: 0,
   },

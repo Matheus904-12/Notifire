@@ -11,7 +11,7 @@ export default function AuthScreen({ navigation }) {
   const entrar = () => {
     signInWithEmailAndPassword(auth, email, senha)
       .then(userCredential => {
-        navigation.navigate('SendMessage');
+        navigation.navigate('ReceiveMessage');
       })
       .catch(error => alert(error.message));
   };

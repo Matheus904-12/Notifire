@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import AuthScreen from './screens/AuthScreen';
 import SendMessageScreen from './screens/SendMessageScreen';
+
 import CadastroScreen from './screens/CadastroScreen';
 
 const Stack = createStackNavigator();

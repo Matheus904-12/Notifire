@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { auth } from '../firebaseConfig';
+import { auth } from '../../App2/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function AuthScreen({ navigation }) {
@@ -11,7 +11,7 @@ export default function AuthScreen({ navigation }) {
   const entrar = () => {
     signInWithEmailAndPassword(auth, email, senha)
       .then(userCredential => {
-        navigation.navigate('SendMessage');
+        navigation.navigate('ReceiveMessage');
       })
       .catch(error => alert(error.message));
   };

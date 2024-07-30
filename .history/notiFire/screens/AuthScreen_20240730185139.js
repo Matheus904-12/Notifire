@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -7,11 +7,12 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 export default function AuthScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
 
   const entrar = () => {
     signInWithEmailAndPassword(auth, email, senha)
       .then(userCredential => {
-        navigation.navigate('SendMessage');
+        navigation.navigate('ReceiveMessage');
       })
       .catch(error => alert(error.message));
   };
@@ -21,6 +22,9 @@ export default function AuthScreen({ navigation }) {
       <View style={styles.container}>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
           <Image source={require('../assets/back.png')} style={styles.backButtonImage} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.infoButton} onPress={() => setModalVisible(true)}>
+          <Image source={require('../assets/info.png')} style={styles.infoButtonImage} />
         </TouchableOpacity>
         <Text style={styles.title}>Entrar</Text>
         <Text style={styles.subtitle}>Faça o login para começar</Text>
@@ -45,6 +49,28 @@ export default function AuthScreen({ navigation }) {
         <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Cadastro')}>
           <Text style={styles.registerButtonText}>Não sou cadastrado :(</Text>
         </TouchableOpacity>
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalText}>Matheus Lucindo</Text>
+              <Text style={styles.modalText}>Luiz Henrique</Text>
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.closeButtonText}>Fechar</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
       </View>
     </LinearGradient>
   );
@@ -66,6 +92,15 @@ const styles = StyleSheet.create({
     left: 30,
   },
   backButtonImage: {
+    width: 40,
+    height: 40,
+  },
+  infoButton: {
+    position: 'absolute',
+    top: 60,
+    right: 30,
+  },
+  infoButtonImage: {
     width: 40,
     height: 40,
   },
@@ -104,6 +139,33 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   registerButtonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    width: 300,
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  modalText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  closeButton: {
+    backgroundColor: '#000',
+    padding: 10,
+    borderRadius: 5,
+  },
+  closeButtonText: {
     color: '#fff',
     fontSize: 16,
   },

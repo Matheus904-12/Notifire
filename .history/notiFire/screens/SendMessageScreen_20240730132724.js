@@ -34,19 +34,19 @@ export default function SendMessageScreen({ navigation }) {
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
           <Image source={require('../assets/back.png')} style={styles.backButtonImage} />
         </TouchableOpacity>
-        <Text style={styles.title}>{user.email}</Text>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite aqui"
-            value={mensagem}
-            onChangeText={setMensagem}
-            placeholderTextColor="#fff"
-          />
-          <TouchableOpacity style={styles.buttonEnviar} onPress={enviarMensagem}>
-            <Image source={require('../assets/send.png')} style={styles.buttonSendImage} />
-          </TouchableOpacity>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{user.email}</Text>
         </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Digite sua mensagem"
+          value={mensagem}
+          onChangeText={setMensagem}
+          placeholderTextColor="#fff"
+        />
+        <TouchableOpacity style={styles.buttonEnviar} onPress={enviarMensagem}>
+          <Text style={styles.buttonText}>Enviar</Text>
+        </TouchableOpacity>
       </View>
     </LinearGradient>
   );
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    justifyContent: 'flex-end', // Adjust to 'flex-end' to push input container to the bottom
+    paddingTop: 20,
   },
   backButton: {
     position: 'absolute',
@@ -70,44 +70,36 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#fff',
-    textAlign: 'center',
-    position: 'absolute',
-    top: 60, // Adjust this value as needed to position the title at the top
-    left: 0,
-    right: 0,
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    position: 'absolute',
-    bottom: 20,
-    left: 20,
-    right: 20,
-  },
-  input: {
+  titleContainer: {
     flex: 1,
-    padding: 15,
-    borderWidth: 1,
-    borderColor: '#fff',
-    borderRadius: 15,
-    color: '#fff',
-    marginRight: 10,
-    backgroundColor: '#333',
-  },
-  buttonEnviar: {
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonSendImage: {
-    width: 30,
-    height: 30,
-    tintColor: '#000',
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 420,
+  },
+  input: {
+    width: '100%',
+    padding: 15,
+    marginBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    color: '#fff',
+    fontSize: 16,
+  },
+  buttonEnviar: {
+    backgroundColor: '#fff',
+    paddingVertical: 12,
+    alignItems: 'center',
+    borderRadius: 5,
+    marginBottom: 20,
+  },
+  buttonText: {
+    color: '#000',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
